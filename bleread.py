@@ -312,7 +312,7 @@ def main():
           try:
             port = int(sys.argv[index+1])
           except:
-            print print 'Invalid argument for port. Must be integer'
+            print 'Invalid argument for port. Must be integer'
             sys.exit()
 
 
