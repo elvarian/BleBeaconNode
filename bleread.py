@@ -316,7 +316,7 @@ def main():
             sys.exit()
 
     print 'Sending to ip:port ' + host + ':' + str(port)
-    print 'Sender: ' + sender
+    print 'Sender: ' + str(sender)
     print 'start'
 
     try:
