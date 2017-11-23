@@ -293,7 +293,7 @@ def main():
 
     for index in range(len(sys.argv)):
       if (sys.argv[index].startswith('-s') ):
-        if (index +1 < len(sys.arg)):
+        if (index +1 < len(sys.argv)):
           try:
             sender = int(sys.argv[index+1])
             #print 'sender: ' + str(sender)
