@@ -287,9 +287,9 @@ def main():
 
     print 'Usage: bleread.sh [options]'
     print 'Program to collect ble beacon data and send it to main server.'
-    print '\t-s NUM\tsender NUM'
-    print '\t-h 127.0.0.1\tIp address for server'
-    print '\t-p 1234\tPort for server'
+    print '\t-s NUM\t\tsender NUM'
+    print '\t-h 127.0.0.1\t\tIp address for server'
+    print '\t-p 1234\t\tPort for server'
 
     for index in range(len(sys.argv)):
       if (sys.argv[index].startswith('-s') ):
