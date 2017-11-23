@@ -267,31 +267,31 @@ def process_line(complete_line, sender):
 
 
 def main():
-   gotOK = 0
+    gotOK = 0
    # Open a file
    # fo = open("logging.txt", "wb")
-   file_path = os.path.dirname(os.path.realpath(__file__))
-   cmd = os.path.join(file_path, 'hcidump.sh')
-   print cmd
-   reader = subprocess.Popen(cmd,
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    cmd = os.path.join(file_path, 'hcidump.sh')
+    print cmd
+    reader = subprocess.Popen(cmd,
                            shell=False,
                            stdin=subprocess.PIPE,
                            stdout=subprocess.PIPE,
                            )
 
-   line = ''
-   cont_line = False
-   sender = 0
-   host = 'localhost'
-   port = 1234
+    line = ''
+    cont_line = False
+    sender = 0
+    host = 'localhost'
+    port = 1234
 
-   print 'Usage: bleread.sh [options]'
-   print 'Program to collect ble beacon data and send it to main server.'
-   print '\t-s NUM\tsender NUM'
-   print '\t-h 127.0.0.1\tIp address for server'
-   print '\t-p 1234\tPort for server'
+    print 'Usage: bleread.sh [options]'
+    print 'Program to collect ble beacon data and send it to main server.'
+    print '\t-s NUM\tsender NUM'
+    print '\t-h 127.0.0.1\tIp address for server'
+    print '\t-p 1234\tPort for server'
 
-   for index in range(len(sys.argv)):
+    for index in range(len(sys.argv)):
       if (sys.argv[index].startswith('-s') ):
         if (index +1 < len(sys.arg)):
           try:
@@ -315,18 +315,17 @@ def main():
             print 'Invalid argument for port. Must be integer'
             sys.exit()
 
-
     print 'Sending to ip:port ' + host + ':' + str(port)
     print 'Sender: ' + sender
     print 'start'
 
-   try:
+    try:
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-   except socket.error:
+    except socket.error:
       print 'Failed to create socket.'
       sys.exit()
 
-   while gotOK < 50:
+    while gotOK < 50:
        reply = reader.stdout.readline()
        #print "reply:%s" % reply
        if re.match("^>.*$", reply):
@@ -355,7 +354,7 @@ def main():
      #print 'line now: ' + printline
      #print 'line header: ' + header
 
-   print 'end'
+    print 'end'
 
 
 
