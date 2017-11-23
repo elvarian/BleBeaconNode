@@ -215,18 +215,18 @@ def process_line(complete_line, sender):
             #print '  Address: {}'.format(d_mac_address)
             # print '  uri: {}{}'.format(uri_scheme(mydata, data_start),
             #                           encoded_uri(mydata, data_start, ad_length(mydata, data_start)))
-      d_tx_power = tx_power(mydata, data_start)
+            d_tx_power = tx_power(mydata, data_start)
             #print '  TX power: {}'.format(d_tx_power)
-      d_rssi_value = rssi_value(mydata)
+            d_rssi_value = rssi_value(mydata)
             #print '  RSSI: {}'.format(d_rssi_value)
       #distance = calc_range(d_rssi_value, d_tx_power)
             #print '  distance: {}'.format(distance)
-      length = ad_length(mydata, data_start)
+            length = ad_length(mydata, data_start)
             #print '  Length: {}'.format(length)
             # fo.write( '{0},'.format(rssi_value(mydata)))
             #print '\n'
 
-      button = pebblebee_button_data(mydata)
+            button = pebblebee_button_data(mydata)
 
       #Device types:
       #0 = pebblebee
@@ -245,20 +245,20 @@ def process_line(complete_line, sender):
         device_data['addons'] = device_addons
         device_data_json = json.dumps(device_data)
         print "Json: " + device_data_json
-    return device_data_json
-  elif len(find_ruuvitag_data(mydata)) > 0:
-      data_start = int(11)
-      d_mac_address = mac_address(mydata)
-      d_tx_power = tx_power(mydata, data_start)
-      d_rssi_value = rssi_value(mydata)
+        return device_data_json
+      elif len(find_ruuvitag_data(mydata)) > 0:
+        data_start = int(11)
+        d_mac_address = mac_address(mydata)
+        d_tx_power = tx_power(mydata, data_start)
+        d_rssi_value = rssi_value(mydata)
 
-      device_data = {}
-      device_data['device_type'] = 1
-      device_data['mac_address'] = d_mac_address
-      device_data['tx_power'] = d_tx_power
-      device_data['rssi'] = d_rssi_value
-      device_data['sender'] = sender
-      device_data_json = json.dumps(device_data)
+        device_data = {}
+        device_data['device_type'] = 1
+        device_data['mac_address'] = d_mac_address
+        device_data['tx_power'] = d_tx_power
+        device_data['rssi'] = d_rssi_value
+        device_data['sender'] = sender
+        device_data_json = json.dumps(device_data)
       #print 'Json: ' + device_data_json
       #print "ruuvitag not fully supported yet"
       #return device_data_json
