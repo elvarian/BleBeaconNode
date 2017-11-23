@@ -301,14 +301,14 @@ def main():
             print 'Invalid argument for sender. Must be integer'
             sys.exit()
       if (sys.argv[index].startswith('-h') ):
-        if (index +1 < len(sys.arg)):
+        if (index +1 < len(sys.argv)):
           try:
             host = str(sys.argv[index+1])
           except:
             print 'Invalid argument for host.'
             sys.exit()
       if (sys.argv[index].startswith('-p') ):
-        if (index +1 < len(sys.arg)):
+        if (index +1 < len(sys.argv)):
           try:
             port = int(sys.argv[index+1])
           except:
