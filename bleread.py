@@ -239,10 +239,10 @@ def process_line(complete_line, sender):
         device_data['rssi'] = d_rssi_value
         #device_data['distance'] = distance
         #device_data['length'] = length
-          device_data['sender'] = sender
-          device_addons = {}
-    device_addons['button'] = button
-    device_data['addons'] = device_addons
+        device_data['sender'] = sender
+        device_addons = {}
+        device_addons['button'] = button
+        device_data['addons'] = device_addons
         device_data_json = json.dumps(device_data)
         print "Json: " + device_data_json
     return device_data_json
@@ -332,24 +332,25 @@ def main():
        if re.match("^>.*$", reply):
            #process last line
            
-     print 'line: ' + line
-     json = process_line(line, sender)
-     if json != None:
-        try:
-           s.sendto(json, (host, port))
-        except socket.error, msg:
-     print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
-     sys.exit()
-           line = reply.strip()
-           cont_line = True
+          print 'line: ' + line
+          json = process_line(line, sender)
+          if json != None:
+            try:
+              s.sendto(json, (host, port))
+            except socket.error, msg:
+              print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
+              sys.exit()
+           
+          line = reply.strip()
+          cont_line = True
            #print 'start line: ' + line
            #gotOK += 1
-           gotOK = 1
+          gotOK = 1
        elif re.match("^\s\s\w.*$", reply):
-           header = line[:49].strip();
-     linedata = line[49:].strip();
-           line = line.strip() + " " + reply.strip()
-     printline = header + " : " + linedata + " " + reply.strip()
+          header = line[:49].strip();
+          linedata = line[49:].strip();
+          line = line.strip() + " " + reply.strip()
+          printline = header + " : " + linedata + " " + reply.strip()
            #print 'line now: ' + line
      #print 'line now: ' + printline
      #print 'line header: ' + header
