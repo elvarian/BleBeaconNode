@@ -101,20 +101,20 @@ def uri_scheme(data, loc):
 
 def url_encoding(code):
     # UriBeacon HTTP URL encoding
-    # 0	0x00	.com/
-    # 1	0x01	.org/
-    # 2	0x02	.edu/
-    # 3	0x03	.net/
-    # 4	0x04	.info/
-    # 5	0x05	.biz/
-    # 6	0x06	.gov/
-    # 7	0x07	.com
-    # 8	0x08	.org
-    # 9	0x09	.edu
-    # 10	0x0a	.net
-    # 11	0x0b	.info
-    # 12	0x0c	.biz
-    # 13	0x0d	.gov
+    # 0 0x00  .com/
+    # 1 0x01  .org/
+    # 2 0x02  .edu/
+    # 3 0x03  .net/
+    # 4 0x04  .info/
+    # 5 0x05  .biz/
+    # 6 0x06  .gov/
+    # 7 0x07  .com
+    # 8 0x08  .org
+    # 9 0x09  .edu
+    # 10  0x0a  .net
+    # 11  0x0b  .info
+    # 12  0x0c  .biz
+    # 13  0x0d  .gov
     encode_scheme = {0: '.com/',
                      1: '.org/',
                      2: '.edu/',
@@ -206,63 +206,63 @@ def process_line(complete_line, sender):
 
         if len(find_pebblebee_data(mydata)) > 0:
             #if len(find_ad_start(mydata)) > 0:
-	    #print 'line: ' + complete_line
-	    #print 'mydata: ' + str(mydata)
+      #print 'line: ' + complete_line
+      #print 'mydata: ' + str(mydata)
             data_start = int(11)
-	    #print 'service_loc: ' + str(find_ad_start(mydata))
+      #print 'service_loc: ' + str(find_ad_start(mydata))
             #print mydata[-1]
             d_mac_address = mac_address(mydata)
             #print '  Address: {}'.format(d_mac_address)
             # print '  uri: {}{}'.format(uri_scheme(mydata, data_start),
             #                           encoded_uri(mydata, data_start, ad_length(mydata, data_start)))
-	    d_tx_power = tx_power(mydata, data_start)
+      d_tx_power = tx_power(mydata, data_start)
             #print '  TX power: {}'.format(d_tx_power)
-	    d_rssi_value = rssi_value(mydata)
+      d_rssi_value = rssi_value(mydata)
             #print '  RSSI: {}'.format(d_rssi_value)
-	    #distance = calc_range(d_rssi_value, d_tx_power)
+      #distance = calc_range(d_rssi_value, d_tx_power)
             #print '  distance: {}'.format(distance)
-	    length = ad_length(mydata, data_start)
+      length = ad_length(mydata, data_start)
             #print '  Length: {}'.format(length)
             # fo.write( '{0},'.format(rssi_value(mydata)))
             #print '\n'
 
-	    button = pebblebee_button_data(mydata)
+      button = pebblebee_button_data(mydata)
 
-	    #Device types:
-	    #0 = pebblebee
-	    #1 = ruuvitag
-	    if button == 0 or button == 1:
-	    	device_data = {}
-	    	device_data['device_type'] = 0
-	    	device_data['mac_address'] = d_mac_address
-	    	device_data['tx_power'] = d_tx_power
-	    	device_data['rssi'] = d_rssi_value
-	    	#device_data['distance'] = distance
-	    	#device_data['length'] = length
-	        device_data['sender'] = sender
-	        device_addons = {}
-		device_addons['button'] = button
-		device_data['addons'] = device_addons
-	    	device_data_json = json.dumps(device_data)
-	    	print "Json: " + device_data_json
-		return device_data_json
-	elif len(find_ruuvitag_data(mydata)) > 0:
-	    data_start = int(11)
-	    d_mac_address = mac_address(mydata)
-	    d_tx_power = tx_power(mydata, data_start)
-	    d_rssi_value = rssi_value(mydata)
+      #Device types:
+      #0 = pebblebee
+      #1 = ruuvitag
+      if button == 0 or button == 1:
+        device_data = {}
+        device_data['device_type'] = 0
+        device_data['mac_address'] = d_mac_address
+        device_data['tx_power'] = d_tx_power
+        device_data['rssi'] = d_rssi_value
+        #device_data['distance'] = distance
+        #device_data['length'] = length
+          device_data['sender'] = sender
+          device_addons = {}
+    device_addons['button'] = button
+    device_data['addons'] = device_addons
+        device_data_json = json.dumps(device_data)
+        print "Json: " + device_data_json
+    return device_data_json
+  elif len(find_ruuvitag_data(mydata)) > 0:
+      data_start = int(11)
+      d_mac_address = mac_address(mydata)
+      d_tx_power = tx_power(mydata, data_start)
+      d_rssi_value = rssi_value(mydata)
 
-	    device_data = {}
-	    device_data['device_type'] = 1
-	    device_data['mac_address'] = d_mac_address
-	    device_data['tx_power'] = d_tx_power
-	    device_data['rssi'] = d_rssi_value
-	    device_data['sender'] = sender
-	    device_data_json = json.dumps(device_data)
-	    #print 'Json: ' + device_data_json
-	    #print "ruuvitag not fully supported yet"
-	    #return device_data_json
-		
+      device_data = {}
+      device_data['device_type'] = 1
+      device_data['mac_address'] = d_mac_address
+      device_data['tx_power'] = d_tx_power
+      device_data['rssi'] = d_rssi_value
+      device_data['sender'] = sender
+      device_data_json = json.dumps(device_data)
+      #print 'Json: ' + device_data_json
+      #print "ruuvitag not fully supported yet"
+      #return device_data_json
+    
 
 
 
@@ -285,25 +285,40 @@ def main():
    host = 'localhost'
    port = 1234
 
-   if len(sys.argv) > 1:
-      try:
-         sender = int(sys.argv[1])
-      except:
-         print 'Invalid argument for sender. Must be integer'
-	 sys.exit()
-      print 'sender: ' + str(sender)
-      if len(sys.argv) == 4:
-	  host = str(sys.argv[2])
-	  try:
-	     port = int(sys.argv[3])
+   print 'Usage: bleread.sh [options]'
+   print 'Program to collect ble beacon data and send it to main server.'
+   print '\t-s NUM\tsender NUM'
+   print '\t-h 127.0.0.1\tIp address for server'
+   print '\t-p 1234\tPort for server'
+
+   for index in range(len(sys.argv)):
+      if (sys.argv[index].startswith('-s') ):
+        if (index +1 < len(sys.arg)):
+          try:
+            sender = int(sys.argv[index+1])
+            #print 'sender: ' + str(sender)
           except:
-	     print 'Invalid argument for port. Must be integer'
-	  print 'Sending to ip:port ' + host + ':' + str(port)
-      else:
-	  print 'Sending to deafult ip:port ' + host + ':' + str(port)
-   else:
-      print 'Using default sender 0'
-   print 'start'
+            print 'Invalid argument for sender. Must be integer'
+            sys.exit()
+      if (sys.argv[index].startswith('-h') ):
+        if (index +1 < len(sys.arg)):
+          try:
+            host = str(sys.argv[index+1])
+          except:
+            print 'Invalid argument for host.'
+            sys.exit()
+      if (sys.argv[index].startswith('-p') ):
+        if (index +1 < len(sys.arg)):
+          try:
+            port = int(sys.argv[index+1])
+          except:
+            print print 'Invalid argument for port. Must be integer'
+            sys.exit()
+
+
+    print 'Sending to ip:port ' + host + ':' + str(port)
+    print 'Sender: ' + sender
+    print 'start'
 
    try:
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -317,14 +332,14 @@ def main():
        if re.match("^>.*$", reply):
            #process last line
            
-	   print 'line: ' + line
-	   json = process_line(line, sender)
-	   if json != None:
-	      try:
-	         s.sendto(json, (host, port))
-	      except socket.error, msg:
-		 print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
-		 sys.exit()
+     print 'line: ' + line
+     json = process_line(line, sender)
+     if json != None:
+        try:
+           s.sendto(json, (host, port))
+        except socket.error, msg:
+     print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
+     sys.exit()
            line = reply.strip()
            cont_line = True
            #print 'start line: ' + line
@@ -332,12 +347,12 @@ def main():
            gotOK = 1
        elif re.match("^\s\s\w.*$", reply):
            header = line[:49].strip();
-	   linedata = line[49:].strip();
+     linedata = line[49:].strip();
            line = line.strip() + " " + reply.strip()
-	   printline = header + " : " + linedata + " " + reply.strip()
+     printline = header + " : " + linedata + " " + reply.strip()
            #print 'line now: ' + line
-	   #print 'line now: ' + printline
-	   #print 'line header: ' + header
+     #print 'line now: ' + printline
+     #print 'line header: ' + header
 
    print 'end'
 
