@@ -54,17 +54,6 @@ def process_line(complete_line, sender):
             
 def main():
     gotOK = 0
-   # Open a file
-   # fo = open("logging.txt", "wb")
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    cmd = os.path.join(file_path, 'hcidump.sh')
-    #print cmd
-    reader = subprocess.Popen(cmd,
-                           shell=False,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           )
-
     line = ''
     cont_line = False
     sender = ''
@@ -92,20 +81,32 @@ def main():
             print 'Invalid argument for port. Must be integer'
             sys.exit()
 
-    hcitool = subprocess.Popen(['hcitool', 'dev'], stdout=subprocess.PIPE)
-            
-    hcitoolSplit = hcitool.split('\n')
-    for index in range(len(hcitoolSplit)):
-      if(index > 0):
-        if(hcitoolSplit[index].startswith('hci')):
-          deviceList = hcitoolSplit[index].split('\t')
+    hcitool = subprocess.Popen(['hcitool', 'dev'], shell=False,stdout=subprocess.PIPE)
+    
+    while True:
+      hcitoolLine = hcitool.stdout.readline()
+      if(hcitoolLine != ''):
+        if(hcitoolLine.startswith('hci')):
+          deviceList = hcitoolLine.split('\t')
           if(len(deviceList) == 2):
             sender = deviceList[1]
             break
-
+      else:
+        break
+    
     print 'Sending to ip:port ' + host + ':' + str(port)
     print 'Sender: ' + str(sender)
     print 'start'
+
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    cmd = os.path.join(file_path, 'hcidump.sh')
+    #print cmd
+    reader = subprocess.Popen(cmd,
+                           shell=False,
+                           stdin=subprocess.PIPE,
+                           stdout=subprocess.PIPE,
+                           )
+
 
     try:
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
