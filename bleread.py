@@ -99,7 +99,7 @@ def main():
       if(index > 0):
         if(hcitoolSplit[index].startswith('hci')):
           deviceList = hcitoolSplit[index].split('\t')
-          if(len(deviceList) == 2)
+          if(len(deviceList) == 2):
             sender = deviceList[1]
             break
 
