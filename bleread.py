@@ -86,6 +86,7 @@ def main():
     while True:
       hcitoolLine = hcitool.stdout.readline()
       if(hcitoolLine != ''):
+        print hcitoolLine
         if(hcitoolLine.startswith('hci')):
           deviceList = hcitoolLine.split('\t')
           if(len(deviceList) == 2):
