@@ -49,7 +49,11 @@ def process_line(complete_line, sender):
             # print mydata[14]
 
         hci_data = {}
-        return None
+        hci_data['sender'] = sender
+        hci_data['data'] = str(mydata)
+        hci_data_json = json.dumps(hci_data)
+        print hci_data_json
+        return hci_data_json
         
             
 def main():
@@ -86,7 +90,7 @@ def main():
     while True:
       hcitoolLine = hcitool.stdout.readline()
       if(hcitoolLine != ''):
-        print hcitoolLine
+        #print hcitoolLine
         if(hcitoolLine.strip().startswith('hci')):
           deviceList = hcitoolLine.strip().split('\t')
           if(len(deviceList) == 2):
@@ -95,6 +99,10 @@ def main():
       else:
         break
     
+    if(sender == ''):
+      print 'Error getting sender information from hcitool.'
+      sys.exit()
+
     print 'Sending to ip:port ' + host + ':' + str(port)
     print 'Sender: ' + str(sender)
     print 'start'
