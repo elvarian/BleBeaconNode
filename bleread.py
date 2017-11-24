@@ -41,19 +41,19 @@ import json
 import socket
 
 def process_line(complete_line, sender):
-    mydata = complete_line.split()
+    #mydata = complete_line.split()
 
-    if len(mydata) > 0:
-        if mydata[0] == '>':
-            del mydata[0]
+    #if len(mydata) > 0:
+    #    if mydata[0] == '>':
+    #       del mydata[0]
             # print mydata[14]
 
-        hci_data = {}
-        hci_data['sender'] = sender
-        hci_data['data'] = str(mydata)
-        hci_data_json = json.dumps(hci_data)
-        print hci_data_json
-        return hci_data_json
+    hci_data = {}
+    hci_data['sender'] = sender
+    hci_data['data'] = complete_line
+    hci_data_json = json.dumps(hci_data)
+    print hci_data_json
+    return hci_data_json
         
             
 def main():
