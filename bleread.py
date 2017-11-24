@@ -95,7 +95,7 @@ def main():
     hcitool = subprocess.Popen(['hcitool', 'dev'], stdout=subprocess.PIPE)
             
     hcitoolSplit = hcitool.split('\n')
-    for(index in range(len(hcitoolSplit))):
+    for index in range(len(hcitoolSplit)):
       if(index > 0):
         if(hcitoolSplit[index].startswith('hci')):
           deviceList = hcitoolSplit[index].split('\t')
