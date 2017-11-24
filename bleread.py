@@ -87,8 +87,8 @@ def main():
       hcitoolLine = hcitool.stdout.readline()
       if(hcitoolLine != ''):
         print hcitoolLine
-        if(hcitoolLine.startswith('hci')):
-          deviceList = hcitoolLine.split('\t')
+        if(hcitoolLine.strip().startswith('hci')):
+          deviceList = hcitoolLine.strip().split('\t')
           if(len(deviceList) == 2):
             sender = deviceList[1]
             break
