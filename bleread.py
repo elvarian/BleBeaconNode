@@ -88,9 +88,9 @@ def process_line(complete_line, sender):
 
     msg = msg + str(senderBytes)
 
-    print 'mydata len: ' + str(len(mydata))
+    print 'mydata len: ' + str(len(bytes))
 
-    dataLengthBytes = struct.pack('H', len(mydata))
+    dataLengthBytes = struct.pack('H', len(bytes))
 
     msg = msg + str(dataLengthBytes)
 
