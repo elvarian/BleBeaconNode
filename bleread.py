@@ -53,9 +53,9 @@ def process_line(complete_line, sender):
 
     print 'Line: ' + line
 
-    mydata = binascii.unhexlify(line)
+    mydata = bytes.fromhex(line)
 
-    print('unhexlify line: ')
+    #print('unhexlify line: ')
     print(mydata)
 
     #if len(mydata) > 0:
