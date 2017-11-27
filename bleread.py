@@ -43,6 +43,16 @@ import struct
 import codecs
 import binascii
 
+def fromHex(x):
+  numerals="0123456789abcdefABCDEF"
+  result=[]
+  x=x[2:]
+  for i in range(int(len(x)/2)):
+    a=numerals.find(x[i*2])
+    b=numerals.find(x[i*2+1])
+    result.append(a*16+b)
+  return bytes(result)
+
 def process_line(complete_line, sender):
     
     print 'complete line: ' + complete_line
@@ -53,7 +63,8 @@ def process_line(complete_line, sender):
 
     print 'Line: ' + line
 
-    mydata = bytes.fromhex(line)
+    bytes = bytearray.fromhex(line)
+    #mydata = bytes.fromHex(line)
 
     #print('unhexlify line: ')
     print(mydata)
