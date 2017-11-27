@@ -41,6 +41,7 @@ import json
 import socket
 import struct
 import codecs
+import binascii
 
 def process_line(complete_line, sender):
     
@@ -52,9 +53,9 @@ def process_line(complete_line, sender):
 
     print 'Line: ' + line
 
-    mydata = line.decode('hex')
+    mydata = binascii.unhexlify(line)
 
-    print 'decoded line: ' + str(mydata)
+    print 'unhexlify line: ' + str(mydata)
 
     #if len(mydata) > 0:
     #    if mydata[0] == '>':
