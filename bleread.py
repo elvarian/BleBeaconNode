@@ -70,7 +70,7 @@ def process_line(complete_line, sender):
     msg = msg + str(dataLengthBytes)
 
     for index in range(len(mydata)):
-      msg = msg + '\x' + mydata[index]
+      msg = msg + struct.pack('b', mydata[index])
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
