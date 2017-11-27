@@ -67,7 +67,7 @@ def process_line(complete_line, sender):
     #mydata = bytes.fromHex(line)
 
     #print('unhexlify line: ')
-    print(mydata)
+    print(bytes)
 
     #if len(mydata) > 0:
     #    if mydata[0] == '>':
@@ -97,7 +97,7 @@ def process_line(complete_line, sender):
     #for index in range(len(mydata)):
     #  msg = msg + b'\x' + str(mydata[index])
 
-    msg = msg + mydata
+    msg = msg + bytes
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
