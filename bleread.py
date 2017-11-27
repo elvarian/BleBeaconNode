@@ -57,7 +57,7 @@ def process_line(complete_line, sender):
     #msg = codecs.decode(senderBytes, 'hex_codec')
     msg = str(senderLengthBytes)
 
-    senderBytes = struct.pack('s', sender)
+    senderBytes = struct.pack('=' + str(len(sender)) +'s', sender)
 
     print 'SenderBytes: ' + str(senderBytes)
 
