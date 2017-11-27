@@ -50,16 +50,16 @@ def process_line(complete_line, sender):
     msg = []         
     msg = len(sender).to_bytes(2, byteorder='big')
     print msg
-    msg = msg + sender
-    msg = msg + str(len(mydata))
-    for index in range(len(mydata)):
-      msg = msg + '\x' + str(mydata[index])
+    #msg = msg + sender
+    #msg = msg + str(len(mydata))
+    #for index in range(len(mydata)):
+    #  msg = msg + '\x' + str(mydata[index])
 
     #hci_data = {}
     #hci_data['sender'] = sender
     #hci_data['data'] = complete_line
     #hci_data_json = json.dumps(hci_data)
-    print msg
+    #print msg
     return msg
         
             
