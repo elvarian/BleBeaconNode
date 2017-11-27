@@ -54,6 +54,8 @@ def process_line(complete_line, sender):
 
     mydata = line.decode('hex')
 
+    print 'decoded line: ' + str(mydata)
+
     #if len(mydata) > 0:
     #    if mydata[0] == '>':
     #       del mydata[0]
