@@ -48,7 +48,7 @@ def process_line(complete_line, sender):
 
     line = complete_line.strip()
     if(line.startswith('>')):
-      line = line[1:]
+      line = line[1:].strip()
 
     print 'Line: ' + line
 
