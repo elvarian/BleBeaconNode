@@ -48,6 +48,8 @@ def process_line(complete_line, sender):
     if(line.startswith('>')):
       line = line[1:]
 
+    print 'Line: ' + line
+
     mydata = line.decode('hex')
 
     #if len(mydata) > 0:
@@ -167,7 +169,7 @@ def main():
        if re.match("^>.*$", reply):
            #process last line
            
-          print 'line: ' + line
+          #print 'line: ' + line
           msg = process_line(line, sender)
 
           #msg = 
