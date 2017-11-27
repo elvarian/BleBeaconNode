@@ -55,7 +55,8 @@ def process_line(complete_line, sender):
 
     mydata = binascii.unhexlify(line)
 
-    print 'unhexlify line: ' + str(mydata)
+    print('unhexlify line: ')
+    print(mydata)
 
     #if len(mydata) > 0:
     #    if mydata[0] == '>':
@@ -85,7 +86,7 @@ def process_line(complete_line, sender):
     #for index in range(len(mydata)):
     #  msg = msg + b'\x' + str(mydata[index])
 
-    msg = msg + str(mydata)
+    msg = msg + mydata
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
