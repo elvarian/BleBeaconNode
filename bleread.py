@@ -40,6 +40,7 @@ import numpy as np
 import json
 import socket
 import struct
+import codecs
 
 def process_line(complete_line, sender):
     mydata = complete_line.split()
@@ -49,8 +50,9 @@ def process_line(complete_line, sender):
            del mydata[0]
              
     #msg = []         
-    msg = struct.pack('H', len(sender))
-    print msg
+    #msg = struct.pack('H', len(sender))
+    msg = codecs.decode(len(sender), 'hex_codec')
+    print str(msg)
     #msg = msg + sender
     #msg = msg + str(len(mydata))
     #for index in range(len(mydata)):
