@@ -44,6 +44,8 @@ import codecs
 
 def process_line(complete_line, sender):
     
+    print 'complete line: ' + complete_line
+
     line = complete_line.strip()
     if(line.startswith('>')):
       line = line[1:]
