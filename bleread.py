@@ -47,7 +47,9 @@ def process_line(complete_line, sender):
         if mydata[0] == '>':
            del mydata[0]
              
-    msg = str(len(sender))
+    msg = []         
+    msg = len(sender).to_bytes(2, byteorder='big')
+    print msg
     msg = msg + sender
     msg = msg + str(len(mydata))
     for index in range(len(mydata)):
