@@ -39,6 +39,7 @@ import sys
 import numpy as np
 import json
 import socket
+import struct
 
 def process_line(complete_line, sender):
     mydata = complete_line.split()
@@ -47,8 +48,8 @@ def process_line(complete_line, sender):
         if mydata[0] == '>':
            del mydata[0]
              
-    msg = []         
-    msg = len(sender).to_bytes(2, byteorder='big')
+    #msg = []         
+    msg = struct.pack('H', len(sender))
     print msg
     #msg = msg + sender
     #msg = msg + str(len(mydata))
