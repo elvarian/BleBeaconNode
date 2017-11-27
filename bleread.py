@@ -62,6 +62,7 @@ def process_line(complete_line, sender):
     #print 'SenderBytes: ' + str(senderBytes)
 
     msg = msg + str(senderBytes)
+
     print 'mydata len: ' + str(len(mydata))
 
     dataLengthBytes = struct.pack('H', len(mydata))
@@ -69,7 +70,7 @@ def process_line(complete_line, sender):
     msg = msg + str(dataLengthBytes)
 
     for index in range(len(mydata)):
-      msg = msg + mydata[index]
+      msg = msg + '\x' + mydata[index]
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
