@@ -43,12 +43,18 @@ import struct
 import codecs
 
 def process_line(complete_line, sender):
-    mydata = complete_line.split()
+    
+    line = complete_line
+    if(complete_line.trim().startswith('>')):
+      line = complete_line[1:]
 
-    if len(mydata) > 0:
-        if mydata[0] == '>':
-           del mydata[0]
-             
+    mydata = line.decode('hex')
+
+    #if len(mydata) > 0:
+    #    if mydata[0] == '>':
+    #       del mydata[0]
+           
+
     #msg = []         
     #msg = struct.pack('H', len(sender))
     #print 'Sender length: ' + str(len(sender))
@@ -69,8 +75,10 @@ def process_line(complete_line, sender):
 
     msg = msg + str(dataLengthBytes)
 
-    for index in range(len(mydata)):
-      msg = msg + b'\x' + str(mydata[index])
+    #for index in range(len(mydata)):
+    #  msg = msg + b'\x' + str(mydata[index])
+
+    msg = msg + str(mydata)
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
