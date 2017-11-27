@@ -51,17 +51,24 @@ def process_line(complete_line, sender):
              
     #msg = []         
     #msg = struct.pack('H', len(sender))
-    print 'Sender length: ' + str(len(sender))
+    #print 'Sender length: ' + str(len(sender))
     senderLengthBytes = struct.pack('H', len(sender))
-    print 'SenderBytes: ' + str(senderLengthBytes)
+    #print 'SenderBytes: ' + str(senderLengthBytes)
     #msg = codecs.decode(senderBytes, 'hex_codec')
     msg = str(senderLengthBytes)
 
     senderBytes = struct.pack('=' + str(len(sender)) +'s', sender)
 
-    print 'SenderBytes: ' + str(senderBytes)
+    #print 'SenderBytes: ' + str(senderBytes)
 
     msg = msg + str(senderBytes)
+
+    dataLengthBytes = struct.pack('H', len(mydata))
+
+    msg = msg + str(dataLengthBytes)
+
+    for index in range(len(mydata)):
+      msg = msg + mydata[index]
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
