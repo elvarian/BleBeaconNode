@@ -44,9 +44,9 @@ import codecs
 
 def process_line(complete_line, sender):
     
-    line = complete_line
-    if(complete_line.trim().startswith('>')):
-      line = complete_line[1:]
+    line = complete_line.strip()
+    if(line.startswith('>')):
+      line = line[1:]
 
     mydata = line.decode('hex')
 
