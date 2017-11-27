@@ -52,8 +52,10 @@ def process_line(complete_line, sender):
     #msg = []         
     #msg = struct.pack('H', len(sender))
     print 'Sender length: ' + str(len(sender))
-    msg = codecs.decode(str(len(sender)), 'hex_codec')
-    print str(msg)
+    senderBytes = struct.pack('H', len(sender)
+    print 'SenderBytes: ' + senderBytes
+    msg = codecs.decode(senderBytes, 'hex_codec')
+    print 'msg: ' + str(msg)
     #msg = msg + sender
     #msg = msg + str(len(mydata))
     #for index in range(len(mydata)):
@@ -147,7 +149,7 @@ def main():
 
           if msg != None:
             try:
-              s.sendto(json, (host, port))
+              s.sendto(msg, (host, port))
             except socket.error, msg:
               print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
               sys.exit()
