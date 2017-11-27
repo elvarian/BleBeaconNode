@@ -41,19 +41,24 @@ import json
 import socket
 
 def process_line(complete_line, sender):
-    #mydata = complete_line.split()
+    mydata = complete_line.split()
 
-    #if len(mydata) > 0:
-    #    if mydata[0] == '>':
-    #       del mydata[0]
-            # print mydata[14]
+    if len(mydata) > 0:
+        if mydata[0] == '>':
+           del mydata[0]
+             
+    msg = str(len(sender))
+    msg = msg + sender
+    msg = msg + str(len(mydata))
+    for index in range(len(mydata)):
+      msg = msg + '\x' + str(mydata[index])
 
-    hci_data = {}
-    hci_data['sender'] = sender
-    hci_data['data'] = complete_line
-    hci_data_json = json.dumps(hci_data)
-    print hci_data_json
-    return hci_data_json
+    #hci_data = {}
+    #hci_data['sender'] = sender
+    #hci_data['data'] = complete_line
+    #hci_data_json = json.dumps(hci_data)
+    print msg
+    return msg
         
             
 def main():
@@ -130,8 +135,11 @@ def main():
            #process last line
            
           print 'line: ' + line
-          json = process_line(line, sender)
-          if json != None:
+          msg = process_line(line, sender)
+
+          #msg = 
+
+          if msg != None:
             try:
               s.sendto(json, (host, port))
             except socket.error, msg:
