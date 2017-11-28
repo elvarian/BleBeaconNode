@@ -110,7 +110,7 @@ def process_line(complete_line, sender):
     hci_data['Data'] = complete_line
     hci_data_json = json.dumps(hci_data)
     #print msg
-    return msg
+    return hci_data_json
         
             
 def main():
