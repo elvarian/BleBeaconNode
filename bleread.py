@@ -63,11 +63,11 @@ def process_line(complete_line, sender):
 
     print 'Line: ' + line
 
-    bytes = bytearray.fromhex(line)
+    #bytes = bytearray.fromhex(line)
     #mydata = bytes.fromHex(line)
 
     #print('unhexlify line: ')
-    print(bytes)
+    #print(bytes)
 
     #if len(mydata) > 0:
     #    if mydata[0] == '>':
@@ -77,27 +77,27 @@ def process_line(complete_line, sender):
     #msg = []         
     #msg = struct.pack('H', len(sender))
     #print 'Sender length: ' + str(len(sender))
-    senderLengthBytes = struct.pack('H', len(sender))
+    #senderLengthBytes = struct.pack('H', len(sender))
     #print 'SenderBytes: ' + str(senderLengthBytes)
     #msg = codecs.decode(senderBytes, 'hex_codec')
-    msg = str(senderLengthBytes)
+    #msg = str(senderLengthBytes)
 
-    senderBytes = struct.pack('=' + str(len(sender)) +'s', sender)
+    #senderBytes = struct.pack('=' + str(len(sender)) +'s', sender)
 
     #print 'SenderBytes: ' + str(senderBytes)
 
-    msg = msg + str(senderBytes)
+    #msg = msg + str(senderBytes)
 
-    print 'mydata len: ' + str(len(bytes))
+    #print 'mydata len: ' + str(len(bytes))
 
-    dataLengthBytes = struct.pack('H', len(bytes))
+    #dataLengthBytes = struct.pack('H', len(bytes))
 
-    msg = msg + str(dataLengthBytes)
+    #msg = msg + str(dataLengthBytes)
 
     #for index in range(len(mydata)):
     #  msg = msg + b'\x' + str(mydata[index])
 
-    msg = msg + bytes
+    #msg = msg + bytes
 
     #print 'msg: ' + str(msg)
     #msg = msg + sender
@@ -105,10 +105,10 @@ def process_line(complete_line, sender):
     #for index in range(len(mydata)):
     #  msg = msg + '\x' + str(mydata[index])
 
-    #hci_data = {}
-    #hci_data['sender'] = sender
-    #hci_data['data'] = complete_line
-    #hci_data_json = json.dumps(hci_data)
+    hci_data = {}
+    hci_data['Sender'] = sender
+    hci_data['Data'] = complete_line
+    hci_data_json = json.dumps(hci_data)
     #print msg
     return msg
         
