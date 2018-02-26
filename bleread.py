@@ -59,7 +59,7 @@ def process_line(complete_line, sender):
 
     line = complete_line.strip()
     line = line.replace('>', '')
-    line = line.replace(' ', '')
+    #line = line.replace(' ', '')
 
     print 'Line: ' + line
 
