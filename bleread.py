@@ -160,7 +160,7 @@ def main():
     sender = ':'.join(("%012X" % getnode())[i:i+2] for i in range(0, 12, 2))
     senderCheck = ':'.join(("%012X" % getnode())[i:i+2] for i in range(0, 12, 2))
 
-    if(sender == '' || sender != senderCheck):
+    if(sender == '' or sender != senderCheck):
       print 'Error getting sender information from getnode.'
       sys.exit()
 
