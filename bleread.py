@@ -42,6 +42,7 @@ import socket
 import struct
 import codecs
 import binascii
+import uuid
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
@@ -142,22 +143,25 @@ def main():
             print 'Invalid argument for port. Must be integer'
             sys.exit()
 
-    hcitool = subprocess.Popen(['hcitool', 'dev'], shell=False,stdout=subprocess.PIPE)
+    #hcitool = subprocess.Popen(['hcitool', 'dev'], shell=False,stdout=subprocess.PIPE)
     
-    while True:
-      hcitoolLine = hcitool.stdout.readline()
-      if(hcitoolLine != ''):
-        #print hcitoolLine
-        if(hcitoolLine.strip().startswith('hci')):
-          deviceList = hcitoolLine.strip().split('\t')
-          if(len(deviceList) == 2):
-            sender = deviceList[1]
-            break
-      else:
-        break
+    #while True:
+    #  hcitoolLine = hcitool.stdout.readline()
+    #  if(hcitoolLine != ''):
+    #    #print hcitoolLine
+    #    if(hcitoolLine.strip().startswith('hci')):
+    #      deviceList = hcitoolLine.strip().split('\t')
+    #      if(len(deviceList) == 2):
+    #        sender = deviceList[1]
+    #        break
+    #  else:
+    #    break
     
-    if(sender == ''):
-      print 'Error getting sender information from hcitool.'
+    sender = ':'.join(("%012X" % getnode())[i:i+2] for i in range(0, 12, 2))
+    senderCheck = ':'.join(("%012X" % getnode())[i:i+2] for i in range(0, 12, 2))
+
+    if(sender == '' || sender != senderCheck):
+      print 'Error getting sender information from getnode.'
       sys.exit()
 
     print 'Sending to ip:port ' + host + ':' + str(port)
