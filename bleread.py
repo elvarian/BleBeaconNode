@@ -42,7 +42,7 @@ import socket
 import struct
 import codecs
 import binascii
-import uuid
+from uuid import getnode
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
