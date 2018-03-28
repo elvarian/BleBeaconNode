@@ -145,7 +145,7 @@ def main():
             print 'Invalid argument for port. Must be integer'
             sys.exit()
       if(sys.argv[index] == '--silent'):
-          silent = True
+        silent = True
 
     #hcitool = subprocess.Popen(['hcitool', 'dev'], shell=False,stdout=subprocess.PIPE)
     
