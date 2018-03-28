@@ -56,7 +56,8 @@ def fromHex(x):
 
 def process_line(complete_line, sender, silent):
     
-    print 'complete line: ' + complete_line
+    if(silent == False):
+        print 'complete line: ' + complete_line
 
     line = complete_line.strip()
     line = line.replace('>', '')
