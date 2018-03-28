@@ -54,7 +54,7 @@ def fromHex(x):
     result.append(a*16+b)
   return bytes(result)
 
-def process_line(complete_line, sender):
+def process_line(complete_line, sender, silent):
     
     print 'complete line: ' + complete_line
 
@@ -62,7 +62,8 @@ def process_line(complete_line, sender):
     line = line.replace('>', '')
     #line = line.replace(' ', '')
 
-    print 'Line: ' + line
+    if(silent == False):
+        print 'Line: ' + line
 
     #bytes = bytearray.fromhex(line)
     #mydata = bytes.fromHex(line)
@@ -121,6 +122,7 @@ def main():
     sender = ''
     host = 'localhost'
     port = 1234
+    silent = False
 
     print 'Usage: bleread.sh [options]'
     print 'Program to collect ble beacon data and send it to main server.'
@@ -142,6 +144,8 @@ def main():
           except:
             print 'Invalid argument for port. Must be integer'
             sys.exit()
+      if(sys.argv[index] == '--silent'):
+          silent = True
 
     #hcitool = subprocess.Popen(['hcitool', 'dev'], shell=False,stdout=subprocess.PIPE)
     
@@ -191,7 +195,7 @@ def main():
            #process last line
            
           #print 'line: ' + line
-          msg = process_line(line, sender)
+          msg = process_line(line, sender, silent)
 
           #msg = 
 
