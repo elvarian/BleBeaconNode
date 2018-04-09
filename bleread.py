@@ -173,16 +173,10 @@ def main():
     print 'Sender: ' + str(sender)
     print 'start'
 
-    hcitool = subprocess.Popen("killall hcitool", 
-                           shell=False, 
-                           stdin=PIPE,
-                           stdout=PIPE,
-                           )
-    hcitool = subprocess.Popen("hcitool lescan --passive",
-                           shell=False,
-                           stdin=PIPE,
-                           stdout=PIPE,
-                           )
+    print 'Trying to kill all possibly running hcitool processes'
+    os.Popen("killall hcitool")
+    print 'Starting a new hcitool process'
+    os.Popen("hcitool lescan --passive")
 
 
     file_path = os.path.dirname(os.path.realpath(__file__))
@@ -191,8 +185,7 @@ def main():
     reader = subprocess.Popen(cmd,
                            shell=False,
                            stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
-                           )
+                           stdout=subprocess.PIPE)
 
 
 
