@@ -184,7 +184,7 @@ def main():
     print 'Trying to kill all possibly running hcitool processes'
     os.popen("killall hcitool")
     print 'Starting a new hcitool process'
-    hcitool = subprocess.Popen('hcitool lescan --passive',
+    hcitool = subprocess.Popen(["hcitool", "lescan", "--passive"],
                            shell=False)
 
     print 'Starting listening...'
