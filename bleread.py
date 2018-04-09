@@ -174,9 +174,9 @@ def main():
     print 'start'
 
     print 'Trying to kill all possibly running hcitool processes'
-    os.Popen("killall hcitool")
+    os.popen("killall hcitool")
     print 'Starting a new hcitool process'
-    os.Popen("hcitool lescan --passive")
+    os.popen("hcitool lescan --passive")
 
 
     file_path = os.path.dirname(os.path.realpath(__file__))
