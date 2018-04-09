@@ -171,7 +171,7 @@ def main():
 
     print 'Sending to ip:port ' + host + ':' + str(port)
     print 'Sender: ' + str(sender)
-    print 'start'
+    
 
     
 
@@ -188,10 +188,10 @@ def main():
     os.popen("killall hcitool")
     print 'Starting a new hcitool process'
     hcitool = subprocess.Popen("hcitool lescan --passive",
-                           shell=False,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE)
+                           shell=False)
 
+    print 'Starting listening...'
+    
     try:
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     except socket.error:
