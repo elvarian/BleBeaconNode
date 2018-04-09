@@ -173,15 +173,15 @@ def main():
     print 'Sender: ' + str(sender)
     print 'start'
 
-    subprocess.Popen('killall hcitool', 
+    hcitool = subprocess.Popen("killall hcitool", 
                            shell=False, 
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
+                           stdin=PIPE,
+                           stdout=PIPE,
                            )
-    subprocess.Popen('hcitool lescan --passive',
+    hcitool = subprocess.Popen("hcitool lescan --passive",
                            shell=False,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE,
+                           stdin=PIPE,
+                           stdout=PIPE,
                            )
 
 
