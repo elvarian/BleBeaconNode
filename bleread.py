@@ -173,10 +173,7 @@ def main():
     print 'Sender: ' + str(sender)
     print 'start'
 
-    print 'Trying to kill all possibly running hcitool processes'
-    os.popen("killall hcitool")
-    print 'Starting a new hcitool process'
-    os.popen("hcitool lescan --passive")
+    
 
 
     file_path = os.path.dirname(os.path.realpath(__file__))
@@ -187,7 +184,10 @@ def main():
                            stdin=subprocess.PIPE,
                            stdout=subprocess.PIPE)
 
-
+    print 'Trying to kill all possibly running hcitool processes'
+    os.popen("killall hcitool")
+    print 'Starting a new hcitool process'
+    os.popen("hcitool lescan --passive")
 
     try:
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
