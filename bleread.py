@@ -179,15 +179,12 @@ def main():
     file_path = os.path.dirname(os.path.realpath(__file__))
     cmd = os.path.join(file_path, 'hcidump.sh')
     #print cmd
-    reader = subprocess.Popen(cmd,
-                           shell=False,
-                           stdin=subprocess.PIPE,
-                           stdout=subprocess.PIPE)
+    reader = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
     print 'Trying to kill all possibly running hcitool processes'
     os.popen("killall hcitool")
     print 'Starting a new hcitool process'
-    hcitool = subprocess.Popen("hcitool lescan --passive",
+    hcitool = subprocess.Popen('hcitool lescan --passive',
                            shell=False)
 
     print 'Starting listening...'
