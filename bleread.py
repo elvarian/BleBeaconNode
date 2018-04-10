@@ -184,24 +184,15 @@ def main():
 
     print 'Trying to kill all possibly running hcitool processes'
     os.popen("killall hcitool")
+
+    print 'Rebooting hci device'
+    subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    subprocess.Popen(["hciconfig", "hci0", "up"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+
     print 'Starting a new hcitool process'
     hcitool = subprocess.Popen(["hcitool", "lescan", "--passive"],
                            shell=False,
                            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-
-    while True:
-      hcitoolReply = hcitool.stdout.readline()
-      if hcitoolReply != '':
-        print 'Hcitool reply: ' + hcitoolReply
-        if hcitoolReply == 'Set scan parameters failed: Input/output error':
-          print 'Trying to reboot hci device'
-          subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-          subprocess.Popen(["hciconfig", "hci0", "up"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-          break
-        else:
-          break
-      else:
-        time.sleep(1)
 
     print 'Starting listening...'
     
