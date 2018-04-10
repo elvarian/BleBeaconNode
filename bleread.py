@@ -188,6 +188,16 @@ def main():
                            shell=False,
                            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
+    while True:
+      hcitoolReply = hcitool.stdout.readline()
+      if hcitoolReply != '':
+        if hcitoolReply == 'Set scan parameters failed: Input/output error':
+          subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+          subprocess.Popen(["hciconfig", "hci0", "up"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+          break
+        else:
+          break
+
     print 'Starting listening...'
     
     try:
