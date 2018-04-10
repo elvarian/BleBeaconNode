@@ -192,6 +192,7 @@ def main():
     while True:
       hcitoolReply = hcitool.stdout.readline()
       if hcitoolReply != '':
+        print 'Hcitool reply: ' + hcitoolReply
         if hcitoolReply == 'Set scan parameters failed: Input/output error':
           print 'Trying to reboot hci device'
           subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
