@@ -43,6 +43,7 @@ import struct
 import codecs
 import binascii
 from uuid import getnode
+import time
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
@@ -192,11 +193,14 @@ def main():
       hcitoolReply = hcitool.stdout.readline()
       if hcitoolReply != '':
         if hcitoolReply == 'Set scan parameters failed: Input/output error':
+          print 'Trying to reboot hci device'
           subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
           subprocess.Popen(["hciconfig", "hci0", "up"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
           break
         else:
           break
+      else:
+        sleep(1)
 
     print 'Starting listening...'
     
