@@ -188,7 +188,7 @@ def main():
     print 'Starting a new hcitool process'
     hcitool = subprocess.Popen(["hcitool", "lescan", "--passive"],
                            shell=False,
-                           stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+                           stdin=None, stdout=None)
 
     print 'Starting listening...'
     
