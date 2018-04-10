@@ -185,10 +185,6 @@ def main():
     print 'Trying to kill all possibly running hcitool processes'
     os.popen("killall hcitool")
 
-    print 'Rebooting hci device'
-    subprocess.Popen(["hciconfig", "hci0", "down"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    subprocess.Popen(["hciconfig", "hci0", "up"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-
     print 'Starting a new hcitool process'
     hcitool = subprocess.Popen(["hcitool", "lescan", "--passive"],
                            shell=False,
