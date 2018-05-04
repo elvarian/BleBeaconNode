@@ -177,8 +177,8 @@ def main():
     os.popen("killall hcitool")
 
     print "Trying to reset hci0"
-    os.open("hciconfig hci0 down")
-    os.open("hciconfig hci0 up")
+    os.popen("hciconfig hci0 down")
+    os.popen("hciconfig hci0 up")
 
     file_path = os.path.dirname(os.path.realpath(__file__))
     cmd = os.path.join(file_path, 'hcidump.sh')
