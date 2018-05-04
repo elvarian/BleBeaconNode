@@ -176,6 +176,10 @@ def main():
     print 'Trying to kill all possibly running hcitool processes'
     os.popen("killall hcitool")
 
+    print "Trying to reset hci0"
+    os.open("hciconfig hci0 down")
+    os.open("hciconfig hci0 up")
+
     file_path = os.path.dirname(os.path.realpath(__file__))
     cmd = os.path.join(file_path, 'hcidump.sh')
     #print cmd
