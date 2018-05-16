@@ -44,8 +44,7 @@ import codecs
 import binascii
 from uuid import getnode
 import time
-from datetime import date
-from datetime import timedelta
+import datetime
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
@@ -200,7 +199,7 @@ def main():
 
     packetsSend = 0
     
-    lastLog = datetime.min
+    lastLog = date.min
 
     while gotOK < 50:
       reply = reader.stdout.readline()
@@ -235,11 +234,10 @@ def main():
      #print 'line now: ' + printline
      #print 'line header: ' + header
 
-      if datetime.today() > lastLog:
+      if datetime.today() - timedelta(minutes=10) > lastLog:
           print packetsSend + " packets sent"
           packetsSend = 0
-          lastLog = datetime.today()
-
+          lastLog = datetime.now()
 
     print 'end'
 
