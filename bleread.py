@@ -43,8 +43,7 @@ import struct
 import codecs
 import binascii
 from uuid import getnode
-import time
-import datetime
+from datetime import datetime, date, time
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
@@ -199,13 +198,13 @@ def main():
 
     packetsSend = 0
     
-    lastLog = date.min
+    lastLog = datetime.date(1,1,1)
 
     while gotOK < 50:
       reply = reader.stdout.readline()
       #print "reply:%s" % reply
       if re.match("^>.*$", reply):
-           #process last line
+           #process last lin
            
           #print 'line: ' + line
           msg = process_line(line, sender, silent)
