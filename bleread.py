@@ -44,6 +44,8 @@ import codecs
 import binascii
 from uuid import getnode
 import time
+from datetime import date
+from datetime import timedelta
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
@@ -196,6 +198,10 @@ def main():
       print 'Failed to create socket.'
       sys.exit()
 
+    packetsSend = 0
+    
+    lastLog = datetime.min
+
     while gotOK < 50:
        reply = reader.stdout.readline()
        #print "reply:%s" % reply
@@ -210,23 +216,30 @@ def main():
           if msg != None:
             try:
               s.sendto(msg, (host, port))
+              packetsSend += 1
             except socket.error, msg:
               print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
               sys.exit()
            
-          line = reply.strip()
-          cont_line = True
+            line = reply.strip()
+            cont_line = True
            #print 'start line: ' + line
            #gotOK += 1
-          gotOK = 1
-       elif re.match("^\s\s\w.*$", reply):
-          header = line[:49].strip();
-          linedata = line[49:].strip();
-          line = line.strip() + " " + reply.strip()
-          printline = header + " : " + linedata + " " + reply.strip()
+            gotOK = 1
+          elif re.match("^\s\s\w.*$", reply):
+            header = line[:49].strip();
+            linedata = line[49:].strip();
+            line = line.strip() + " " + reply.strip()
+            printline = header + " : " + linedata + " " + reply.strip()
            #print 'line now: ' + line
      #print 'line now: ' + printline
      #print 'line header: ' + header
+
+        if datetime.today() > lastLog:
+          print packetsSend + " packets sent"
+          packetsSend = 0
+          lastLog = datetime.today()
+
 
     print 'end'
 
