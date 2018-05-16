@@ -198,7 +198,7 @@ def main():
 
     packetsSend = 0
     
-    lastLog = datetime.date(1,1,1)
+    lastLog = date.min
 
     while gotOK < 50:
       reply = reader.stdout.readline()
