@@ -203,9 +203,9 @@ def main():
     lastLog = datetime.min
 
     while gotOK < 50:
-       reply = reader.stdout.readline()
-       #print "reply:%s" % reply
-       if re.match("^>.*$", reply):
+      reply = reader.stdout.readline()
+      #print "reply:%s" % reply
+      if re.match("^>.*$", reply):
            #process last line
            
           #print 'line: ' + line
@@ -235,7 +235,7 @@ def main():
      #print 'line now: ' + printline
      #print 'line header: ' + header
 
-        if datetime.today() > lastLog:
+      if datetime.today() > lastLog:
           print packetsSend + " packets sent"
           packetsSend = 0
           lastLog = datetime.today()
