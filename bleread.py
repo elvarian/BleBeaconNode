@@ -209,8 +209,6 @@ def main():
           #print 'line: ' + line
           msg = process_line(line, sender, silent)
 
-          #msg = 
-
           if msg != None:
             try:
               s.sendto(msg, (host, port))
@@ -224,11 +222,11 @@ def main():
            #print 'start line: ' + line
            #gotOK += 1
             gotOK = 1
-          elif re.match("^\s\s\w.*$", reply):
-            header = line[:49].strip();
-            linedata = line[49:].strip();
-            line = line.strip() + " " + reply.strip()
-            printline = header + " : " + linedata + " " + reply.strip()
+      elif re.match("^\s\s\w.*$", reply):
+          header = line[:49].strip();
+          linedata = line[49:].strip();
+          line = line.strip() + " " + reply.strip()
+          printline = header + " : " + linedata + " " + reply.strip()
            #print 'line now: ' + line
      #print 'line now: ' + printline
      #print 'line header: ' + header
