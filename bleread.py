@@ -43,7 +43,7 @@ import struct
 import codecs
 import binascii
 from uuid import getnode
-from datetime import datetime, date, time
+from datetime import datetime, date, time, timedelta
 
 def fromHex(x):
   numerals="0123456789abcdefABCDEF"
