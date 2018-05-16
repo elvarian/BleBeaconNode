@@ -234,7 +234,7 @@ def main():
      #print 'line header: ' + header
 
       if datetime.now() - timedelta(minutes=10) > lastLog:
-          print packetsSend + " packets sent"
+          print str(packetsSend) + " packets sent"
           packetsSend = 0
           lastLog = datetime.now()
 
