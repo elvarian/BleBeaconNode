@@ -198,7 +198,7 @@ def main():
 
     packetsSend = 0
     
-    lastLog = date.min
+    lastLog = datetime.min
 
     while gotOK < 50:
       reply = reader.stdout.readline()
@@ -233,7 +233,7 @@ def main():
      #print 'line now: ' + printline
      #print 'line header: ' + header
 
-      if datetime.today() - timedelta(minutes=10) > lastLog:
+      if datetime.now() - timedelta(minutes=10) > lastLog:
           print packetsSend + " packets sent"
           packetsSend = 0
           lastLog = datetime.now()
