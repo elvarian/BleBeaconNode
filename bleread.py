@@ -215,7 +215,7 @@ def main():
               packetsSend += 1
             except socket.error, msg:
               print 'Error code : ' + str(msg[0]) + ' Message ' + msg[1]
-              sys.exit()
+              continue
            
             line = reply.strip()
             cont_line = True
